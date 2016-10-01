@@ -16,7 +16,7 @@ Apps.prototype.to_json = function() {
 Apps.prototype.show_company_and_position = function() {
   var a = this.list;
   var companies = _.map(a, function(app) {
-    return (app['job_title'] + ' @ ' + app['company']);
+    return (app['company'] + ' - ' + app['job_title']);
   });
   console.log(companies);
 };

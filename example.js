@@ -17,6 +17,9 @@ jm.login(userid, password)
 
       // output interviews -- it might be an empty array
       l.interviews().to_console();
+
+      // all rejections - format: "{{JOB_TITLE}} - {{COMPANY}}"
+      l.rejections().show_company_and_position();
     }
   );
 
