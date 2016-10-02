@@ -1,4 +1,4 @@
-var jm = require('./JobMine');
+var JobMine = require('./JobMine');
 var userid;
 var password;
 
@@ -8,16 +8,33 @@ if(process.argv.length == 4) {
   password = process.argv[3];
 }
 
-jm.login(userid, password)
-  .then(jm.getAllApps)
+// getAllApps resolves to give an Apps object (includes some filtering functions)
+JobMine.login(userid, password)
+  .then(JobMine.getAllApps)
   .then((apps) => {
-    // create App List
-    var l = jm.buildAppList(apps);
 
-    // output interviews -- it might be an empty array
-    console.log( l.interviews().full() );
+    // show all apps as a JSON string
+    console.log('All Apps (JSON):');
+    console.log( apps.to_json() );
 
-    // all rejections - format: "{{COMPANY}} - {{JOB_TITLE}}"
-    console.log( l.rejections().company_and_position() );
+    // show all interviews - format: "COMPANY - JOB_TITLE"
+    console.log('Interviews:');
+    console.log( apps.interviews().company_and_position() );
+
+    // show all rejections - format: "COMPANY - JOB_TITLE"
+    console.log('Rejections:');
+    console.log( apps.rejections().company_and_position() );
+
   });
 
+// getAllInterviews resolves to give an array with interview details
+// the Apps object equivalent for interviews will come later
+JobMine.login(userid, password)
+  .then(JobMine.getAllInterviews)
+  .then((interviews) => {
+    // Array of interviews
+    console.log( interviews );
+
+    // JSON of the interview array
+    console.log( JSON.parse(interviews) );
+  });

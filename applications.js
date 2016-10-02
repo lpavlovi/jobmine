@@ -18,6 +18,7 @@ Apps.prototype.company_and_position = function() {
   var companies = _.map(a, function(app) {
     return (app['company'] + ' - ' + app['job_title']);
   });
+
   return companies;
 };
 

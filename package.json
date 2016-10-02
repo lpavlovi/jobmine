@@ -14,5 +14,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Luka",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lpavlovi/jobmine.git"
+  },
+  "keywords": [
+    "jobmine",
+    "waterloo"
+  ],
+  "bugs": {
+    "url": "https://github.com/lpavlovi/jobmine/issues"
+  },
+  "homepage": "https://github.com/lpavlovi/jobmine#readme"
 }
