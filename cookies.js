@@ -1,19 +1,14 @@
-var acceptable_cookies = [
-  new RegExp(/jobmprod\S+=\S+/),
-  new RegExp(/PS_(?!TOKENEXPIRE)\w+=\S+/),
-  new RegExp(/SignOnDefault=\S+/),
-  new RegExp(/ExpirePage=\S+/)
-];
+const ac = new RegExp(/(jobmprod\S+|PS_(?!TOKENEXPIRE)\w+|SignOnDefault|ExpirePage)=\S+/);
 
 var matchCookie = function(str) {
-  for(var i = 0; i < acceptable_cookies.length; i++) {
-    x = str.match(acceptable_cookies[i]);
-    if (x != null) return x[0];
-  }
-  return false;
+  x = str.match(ac);
+  return x != null ? x[0] : false;
 };
 
-var build_cookie_string = function(cookies) {
+// Isolate cookie name and value from the response headers
+// join array on a space to get a cookie string
+// Used as a part of the header in many requests where the user need to be logged in
+exports.generate = function(cookies) {
   var list_cookie = []
   var cookie_str;
 
@@ -26,6 +21,3 @@ var build_cookie_string = function(cookies) {
   return cookie_str;
 };
 
-module.exports = {
-  'generate': build_cookie_string
-};

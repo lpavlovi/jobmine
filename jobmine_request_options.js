@@ -24,21 +24,17 @@ var app_options = {
   }
 };
 
-// getLoginOptions for request module - in: username and password
-var getLoginOptions = function(username, password) {
+// generates login options for request module - in: username and password
+exports.login = function(username, password) {
   var return_val = extend(login_options, {});
   return_val['form']['userid'] = username;
   return_val['form']['pwd'] = password;
   return return_val;
 };
 
-// getApplicationsOptions for request module - in: cookie string obtained from the login request
-var getApplicationsOptions = function(cookie_string) {
+// generates applications list options for request module - in: cookie string obtained from the login request
+exports.applications = function(cookie_string) {
   var return_val = extend(app_options, {});
   return_val['headers']['Cookie'] = cookie_string;
   return return_val;
-};
-module.exports = {
-  'login': getLoginOptions,
-  'applications': getApplicationsOptions
 };
