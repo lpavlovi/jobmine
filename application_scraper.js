@@ -35,7 +35,15 @@ var getAppStatus = function(elem) {
 };
 
 var getUserStatus = function(elem) {
-  var info = elem.children()[6].children[1].children[0];
+  var info = elem.children()[6];
+
+  info = info.children[1];
+
+  if (info == null) {
+    return null;
+  }
+
+  info = info.children[0];
   return extractTextFromElement(info);
 };
 
